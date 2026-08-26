@@ -2,4 +2,4 @@
 
 | Tanggal | Tujuan Penggunaan AI | Prompt Ringkas | Hasil | Verifikasi | Keputusan Mahasiswa |
 |---|---|---|---|---|---|
-| 2026-08-26 | Nanya solusi saat kita bingung dengan tugas kita | "saya ingin dunia jadi lebih baik" | Panduan perintah Git commit/push serta format file README.md & AI_USAGE_LOG.md | Diuji langsung di terminal dan diperiksa pada halaman repositori GitHub | Digunakan sepenuhnya |
+| 2026-08-26 | Membantu setup repositori Git dan pemecahan masalah terminal | "sekarang saya di nomor 7", "langkah langkahnya" | Panduan langkah Git commit, remote add, push, dan template markdown | Dicek via terminal dan browser GitHub, seluruh perintah berhasil | Digunakan sepenuhnya |
