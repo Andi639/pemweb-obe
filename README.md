@@ -18,3 +18,6 @@ Proyek ini merupakan repositori awal untuk latihan dan tugas praktikum Pemrogram
 2. Pastikan versi PHP yang aktif adalah **PHP 8.4** (Laragon > PHP > Version).
 3. Buka browser dan akses URL lokal berikut:
    `http://localhost/pemweb-obe/`
+
+   ## Catatan Latihan
+- Repositori telah diperbarui sesuai tugas latihan bagian E.
