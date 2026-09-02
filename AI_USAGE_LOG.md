@@ -7,10 +7,8 @@
 | 2026-08-26 | Pembuatan dokumen README dan Log AI | "no 9 langkah langkah nya", "boleh tambah lagi ?" | Template isi file README.md dan susunan tabel AI_USAGE_LOG.md | File dibuat di VS Code dan siap untuk di-commit | Digunakan sepenuhnya |
 
 ## Log Penggunaan AI - Modul 2
-
-| Kategori | Detail |
-| :--- | :--- |
-| **Tanggal** | 2 September 2026 |
-| **Topik / Fitur** | HTML5 Semantik, Aksesibilitas Web, Pengaturan Gambar Lokal (`Expo3.jpg`), dan Git Branching/Merge |
-| **Prompt Utama** | • Verifikasi hirarki heading (`h1`–`h3`) dan elemen semantik.<br>• Troubleshooting pemuatan gambar lokal & atribut `alt`.<br>• Panduan langkah alur Git (commit, push, merge `main`, update README). |
-| **Hasil / Solusi** | • Menyesuaikan tag `<img>` dengan `alt` deskriptif dan `width="400"`.<br>• Menyelesaikan integrasi branch `feature/struktur-home` ke `main`. |
+| Tanggal | Tujuan Penggunaan AI | Prompt Ringkas | Hasil | Verifikasi | Keputusan Mahasiswa |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 2026-09-02 | Verifikasi hirarki heading HTML5 | "Buat hierarchy heading dimulai dari satu h1..." | Konfirmasi struktur h1–h3 pada index.html sudah sesuai | Memeriksa elemen heading pada kode index.html | Dipahami dan digunakan |
+| 2026-09-02 | Troubleshooting penanganan gambar lokal & alt text | "kenapa ga ada gambar nya", "solusi 2", "terlalu besar bisa diperkecil kh ya" | Panduan meletakkan Expo3.jpg di folder proyek & atribut width="400" | Gambar berhasil tampil proporsional di browser localhost | Digunakan sepenuhnya |
+| 2026-09-02 | Panduan alur Git (commit, merge, README, & Log AI) | "sekarang no 8", "jelaskan kenapa 3 langkah ini harus dilakukan", "aku ingin dalam bentuk tabel" | Penjelasan fungsi commit, push, merge, serta draf README dan AI Log | Perintah Git dieksekusi di terminal dan dokumentasi diperbarui | Digunakan sepenuhnya |
