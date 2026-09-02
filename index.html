@@ -1,75 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventaris Lab Komputer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portal Layanan UMKM Pesisir Tarakan">
+  <title>Sistem Informasi UMKM Pesisir</title>
 </head>
 <body>
 
-    <header>
-        <h1>Sistem Inventaris Lab</h1>
-        <nav>
-            <a href="#tentang">Tentang</a> |
-            <a href="#alat">Daftar Alat</a> |
-            <a href="#pinjam">Peminjaman</a> |
-            <a href="#kontak">Kontak Admin</a>
-        </nav>
-    </header>
+  <!-- Link Aksesibilitas Keyboard -->
+  <header>
+    <a href="#main-content">Lewati ke konten utama</a>
+    <h1>Portal UMKM Pesisir Tarakan</h1>
+    <nav aria-label="Navigasi Utama">
+      <ul>
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#produk">Produk Unggulan</a></li>
+        <li><a href="#layanan">Layanan Perizinan</a></li>
+        <li><a href="#kontak">Kontak Kami</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <!-- Section 1 -->
-        <section id="tentang">
-            <h2>Profil Singkat</h2>
-            <p>Halaman ini digunakan untuk mencatat dan mengelola barang-barang di laboratorium Teknik Komputer.</p>
-            <img src="foto-lab.jpg" alt="Foto ruangan laboratorium komputer UBT">
-        </section>
+  <main id="main-content">
+    <!-- Section 1: Beranda -->
+    <section id="beranda">
+      <h2>Pusat Informasi UMKM Pesisir</h2>
+      <p>Mendukung digitalisasi dan efisiensi produk usaha lokal di wilayah pesisir.</p>
+      <img src="https://via.placeholder.com/600x200" alt="Foto produk kerajinan tangan lokal khas pesisir">
+    </section>
 
-        <!-- Section 2 -->
-        <section id="alat">
-            <h2>Kategori Perangkat</h2>
-            
-            <article>
-                <h3>Komputer & Monitor</h3>
-                <p>Tersedia 20 unit PC untuk kegiatan praktikum mahasiswa.</p>
-            </article>
+    <!-- Section 2: Produk Unggulan (Memuat Article) -->
+    <section id="produk">
+      <h2>Produk Olahan Lokal</h2>
+      <article>
+        <h3>Krupuk Amplang Khas Pesisir</h3>
+        <p>Produk olahan ikan segar langsung dari nelayan lokal dengan pengemasan modern.</p>
+      </article>
+    </section>
 
-            <article>
-                <h3>Modul Praktikum</h3>
-                <p>Modul mikrokontroler, kit sensor, dan perangkat IoT.</p>
-            </article>
-        </section>
+    <!-- Section 3: Layanan -->
+    <section id="layanan">
+      <h2>Layanan Pendampingan Usaha</h2>
+      <p>Fasilitasi pendaftaran sertifikasi halal dan legalitas usaha bagi para pelaku UMKM.</p>
+    </section>
 
-        <!-- Section 3 -->
-        <section id="pinjam">
-            <h2>Aturan Peminjaman</h2>
-            <p>Peminjaman alat wajib mendapat persetujuan dari asisten lab sebelum barang dibawa keluar.</p>
-        </section>
+    <!-- Section Form Kontak -->
+    <section id="kontak">
+      <h2>Formulir Pertanyaan & Hubungi Kami</h2>
+      <form action="#" method="post">
+        <div>
+          <label for="nama">Nama Lengkap:</label>
+          <input type="text" id="nama" name="nama" required>
+        </div>
+        <br>
+        <div>
+          <label for="email">Alamat Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <br>
+        <div>
+          <label for="pesan">Pesan atau Pertanyaan:</label>
+          <textarea id="pesan" name="pesan" rows="4" required></textarea>
+        </div>
+        <br>
+        <button type="submit">Kirim Pesan</button>
+      </form>
+    </section>
+  </main>
 
-        <!-- Form Kontak -->
-        <section id="kontak">
-            <h2>Kontak Admin Lab</h2>
-            <form action="" method="post">
-                <p>
-                    <label for="nama">Nama:</label><br>
-                    <input type="text" id="nama" name="nama" required>
-                </p>
-                <p>
-                    <label for="email">Email:</label><br>
-                    <input type="email" id="email" name="email" required>
-                </p>
-                <p>
-                    <label for="pesan">Pesan / Keperluan:</label><br>
-                    <textarea id="pesan" name="pesan" id="pesan" rows="4"></textarea>
-                </p>
-                <button type="submit">Kirim</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 - Praktikum Pemrograman Web UBT</p>
-    </footer>
+  <footer>
+    <p>&copy; 2026 Portal UMKM Pesisir. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
