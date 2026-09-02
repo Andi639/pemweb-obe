@@ -8,12 +8,9 @@
 
 ## Log Penggunaan AI - Modul 2
 
-- **Tanggal**: 2 September 2026
-- **Topik/Fitur**: HTML5 Semantik, Aksesibilitas Web, Pengaturan Gambar Lokal, dan Git Branching/Merge
-- **Prompt Utama**:
-  - Meminta verifikasi struktur semantik HTML5 dan hirarki heading (`h1`–`h3`).
-  - Mengatasi masalah pemuatan gambar lokal (`Expo3.jpg`) dan atribut `alt`.
-  - Meminta panduan alur Git (branching, commit, merge ke `main`, update README).
-- **Hasil/Perubahan Kode**:
-  - Penyesuaian tag `<img>` dengan `alt` deskriptif dan atribut `width="400"`.
-  - Penyelesaian seluruh alur Git dari *feature branch* hingga *merge* ke `main`.
+| Kategori | Detail |
+| :--- | :--- |
+| **Tanggal** | 2 September 2026 |
+| **Topik / Fitur** | HTML5 Semantik, Aksesibilitas Web, Pengaturan Gambar Lokal (`Expo3.jpg`), dan Git Branching/Merge |
+| **Prompt Utama** | • Verifikasi hirarki heading (`h1`–`h3`) dan elemen semantik.<br>• Troubleshooting pemuatan gambar lokal & atribut `alt`.<br>• Panduan langkah alur Git (commit, push, merge `main`, update README). |
+| **Hasil / Solusi** | • Menyesuaikan tag `<img>` dengan `alt` deskriptif dan `width="400"`.<br>• Menyelesaikan integrasi branch `feature/struktur-home` ke `main`. |
