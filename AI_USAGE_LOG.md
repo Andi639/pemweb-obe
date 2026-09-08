@@ -1,4 +1,4 @@
-# Log Penggunaan AI
+# Log Penggunaan AI - Modul 1
 
 | Tanggal | Tujuan Penggunaan AI | Prompt Ringkas | Hasil | Verifikasi | Keputusan Mahasiswa |
 |---|---|---|---|---|---|
@@ -12,3 +12,5 @@
 | 2026-09-02 | Verifikasi hirarki heading HTML5 | "Buat hierarchy heading dimulai dari satu h1..." | Konfirmasi struktur h1–h3 pada index.html sudah sesuai | Memeriksa elemen heading pada kode index.html | Dipahami dan digunakan |
 | 2026-09-02 | Troubleshooting penanganan gambar lokal & alt text | "kenapa ga ada gambar nya", "solusi 2", "terlalu besar bisa diperkecil kh ya" | Panduan meletakkan Expo3.jpg di folder proyek & atribut width="400" | Gambar berhasil tampil proporsional di browser localhost | Digunakan sepenuhnya |
 | 2026-09-02 | Panduan alur Git (commit, merge, README, & Log AI) | "sekarang no 8", "jelaskan kenapa 3 langkah ini harus dilakukan", "aku ingin dalam bentuk tabel" | Penjelasan fungsi commit, push, merge, serta draf README dan AI Log | Perintah Git dieksekusi di terminal dan dokumentasi diperbarui | Digunakan sepenuhnya |
+| 2026-09-08 | Penyusunan struktur HTML5 semantik & aksesibilitas Modul 02 | "bantu saya kerja F. Tugas OBE" | Template HTML5 semantik, checklist aksesibilitas, dan refleksi modul | Diuji via `http://localhost/pemweb-obe/` dan navigasi keyboard Tab | Digunakan dan disesuaikan |
+| 2026-09-08 | Pemecahan masalah Git branch & perapihan dokumentasi | "nothing added to commit", "berikan saya apa saja harus di commit" | Solusi pindah branch `feature/struktur-home` dan urutan pesan commit | Perintah Git berhasil mengeksekusi commit dan merge tanpa error | Digunakan sepenuhnya |
