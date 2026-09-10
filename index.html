@@ -5,74 +5,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portal Layanan UMKM Pesisir Tarakan">
   <title>Sistem Informasi UMKM Pesisir</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Link Aksesibilitas Keyboard -->
+  <!-- Header & Navigasi -->
   <header>
-    <a href="#main-content">Lewati ke konten utama</a>
-    <h1>Portal UMKM Pesisir Tarakan</h1>
-    <nav aria-label="Navigasi Utama">
-      <ul>
-        <li><a href="#beranda">Beranda</a></li>
-        <li><a href="#produk">Produk Unggulan</a></li>
-        <li><a href="#layanan">Layanan Perizinan</a></li>
-        <li><a href="#kontak">Kontak Kami</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <a href="#main-content">Lewati ke konten utama</a>
+      <h1>Portal UMKM Pesisir Tarakan</h1>
+      <nav aria-label="Navigasi Utama">
+        <ul>
+          <li><a href="#" onclick="showSection('beranda')" id="nav-beranda" class="active">Beranda</a></li>
+          <li><a href="#" onclick="showSection('produk')" id="nav-produk">Produk Unggulan</a></li>
+          <li><a href="#" onclick="showSection('layanan')" id="nav-layanan">Layanan Perizinan</a></li>
+          <li><a href="#" onclick="showSection('tentang')" id="nav-tentang">Tentang Saya</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="container">
     <!-- Section 1: Beranda -->
-    <section id="beranda">
+    <section id="beranda" class="tab-content active">
       <h2>Pusat Informasi UMKM Pesisir</h2>
-      <p>Mendukung digitalisasi dan efisiensi produk usaha lokal di wilayah pesisir.</p>
-      <p>Portal ini menyediakan informasi produk unggulan seperti Batik Lulantatibu, Beras Adan, dan Madu Sembakung.</p>
-      <img src="Expo3.jpg" alt="Foto produk kerajinan tangan batok kelapa lokal khas pesisir" width="400">
+      <div class="card">
+        <p>Mendukung digitalisasi dan efisiensi produk usaha lokal di wilayah pesisir.</p>
+        <p>Portal ini menyediakan informasi produk unggulan seperti Batik Lulantatibu, Beras Adan, dan Madu Sembakung.</p>
+      </div>
     </section>
 
-    <!-- Section 2: Produk Unggulan (Memuat Article) -->
-    <section id="produk">
+    <!-- Section 2: Produk Unggulan -->
+    <section id="produk" class="tab-content">
       <h2>Produk Olahan Lokal</h2>
-      <article>
-        <h3>Krupuk Amplang Khas Pesisir</h3>
-        <p>Produk olahan ikan segar langsung dari nelayan lokal dengan pengemasan modern.</p>
-      </article>
+      <div class="cards">
+        <article class="card">
+          <img src="Expo3.jpg" alt="Foto produk kerajinan tangan batok kelapa lokal khas pesisir">
+          <h3>Kerajinan Batok Kelapa</h3>
+          <p>Produk seni kerajinan ramah lingkungan khas pesisir Tarakan.</p>
+        </article>
+
+        <article class="card">
+          <h3>Krupuk Amplang Khas Pesisir</h3>
+          <p>Produk olahan ikan segar langsung dari nelayan lokal dengan pengemasan modern.</p>
+        </article>
+
+        <article class="card">
+          <h3>Batik Lulantatibu</h3>
+          <p>Kain motif khas lokal dengan pewarnaan alami yang berkualitas tinggi.</p>
+        </article>
+      </div>
     </section>
 
     <!-- Section 3: Layanan -->
-    <section id="layanan">
+    <section id="layanan" class="tab-content">
       <h2>Layanan Pendampingan Usaha</h2>
-      <p>Fasilitasi pendaftaran sertifikasi halal dan legalitas usaha bagi para pelaku UMKM.</p>
+      <div class="card">
+        <p>Fasilitasi pendaftaran sertifikasi halal dan legalitas usaha bagi para pelaku UMKM.</p>
+      </div>
     </section>
 
-    <!-- Section Form Kontak -->
-    <section id="kontak">
-      <h2>Formulir Pertanyaan & Hubungi Kami</h2>
-      <form action="#" method="post">
-        <div>
-          <label for="nama">Nama Lengkap:</label>
-          <input type="text" id="nama" name="nama" required>
-        </div>
-        <br>
-        <div>
-          <label for="email">Alamat Email:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <br>
-        <div>
-          <label for="pesan">Pesan atau Pertanyaan:</label>
-          <textarea id="pesan" name="pesan" rows="4" required></textarea>
-        </div>
-        <br>
-        <button type="submit">Kirim Pesan</button>
-      </form>
+    <!-- Section 4: Tentang Saya -->
+    <section id="tentang" class="tab-content">
+      <h2>Tentang Saya</h2>
+      <div class="card">
+        <p>Halo Nama saya Andi Muhammad Arsa , Web ini dikembangkan oleh mahasiswa Teknik Komputer Universitas Borneo Tarakan untuk mendukung digitalisasi UMKM daerah pesisir.</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 Portal UMKM Pesisir. All rights reserved.</p>
+    <div class="container" style="text-align: center;">
+      <p>&copy; 2026 Portal UMKM Pesisir. All rights reserved.</p>
+    </div>
   </footer>
-<!-- Modul 2: Aksesibilitas Web & HTML5 Semantik -->
+
+  <!-- Script Sederhana untuk Perpindahan Tab/Menu -->
+  <script>
+    function showSection(sectionId) {
+      // 1. Sembunyikan semua section
+      const sections = document.querySelectorAll('.tab-content');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      // 2. Tampilkan section yang diklik
+      document.getElementById(sectionId).classList.add('active');
+
+      // 3. Ubah warna tombol navigasi aktif
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => link.classList.remove('active'));
+      document.getElementById('nav-' + sectionId).classList.add('active');
+    }
+  </script>
+
 </body>
 </html>
