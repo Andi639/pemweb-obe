@@ -11,8 +11,6 @@
 ```
 ---
 
----
-
 ## Dokumentasi Modul 03 - Responsive Landing Page (Tugas OBE)
 
 ### 1. Penerapan CSS Modern & Responsivitas
