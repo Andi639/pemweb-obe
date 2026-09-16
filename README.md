@@ -1,4 +1,4 @@
-# Portal UMKM Pesisir Tarakan - Pemrograman Web (OBE)
+# Portal UMKM Pesisir Tarakan - Pemrograman Web
 
 ## Identitas Mahasiswa
 - **Mata Kuliah:** Praktikum Pemrograman Web (26TJ453127)
