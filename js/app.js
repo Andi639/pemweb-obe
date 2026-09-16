@@ -1,7 +1,7 @@
-// 1. Import fungsi dari utils.js di baris paling atas
+// Import fungsi dari utils.js di baris paling atas
 import { ringkasInventaris } from './utils.js';
 
-// 2. Data Inventaris
+// Data Inventaris
 const inventaris = [
   { id: 1, nama: 'Alat Pres Kemasan Amplang', kategori: 'Pengemasan', jumlah: 4, kondisi: 'Baik' },
   { id: 2, nama: 'Timbangan Digital Batik', kategori: 'Pewarnaan', jumlah: 6, kondisi: 'Baik' },
@@ -12,22 +12,22 @@ const inventaris = [
 console.log('--- Data Inventaris awal ---');
 console.table(inventaris);
 
-// 3. Filter kondisi Baik
+// Filter kondisi Baik
 const alatBaik = inventaris.filter(item => item.kondisi === 'Baik');
 console.log('--- Alat dengan Kondisi Baik ---');
 console.table(alatBaik);
 
-// 4. Map nama alat
+// Map nama alat
 const namaAlat = inventaris.map(({ nama }) => nama);
 console.log('--- Daftar Nama Alat ---');
 console.log(namaAlat);
 
-// 5. Reduce total unit
+// Reduce total unit
 const totalUnit = inventaris.reduce((total, item) => total + item.jumlah, 0);
 console.log('--- Total Seluruh Unit Alat ---');
 console.log(`Total unit: ${totalUnit} unit`);
 
-// 6 & 8. Panggil fungsi yang di-import dari utils.js dengan Error Handling
+// Panggil fungsi yang di-import dari utils.js dengan Error Handling
 try {
   console.log('--- Object Statistik Inventaris (Import dari utils.js) ---');
   console.log(ringkasInventaris(inventaris));
@@ -90,3 +90,40 @@ function buatRingkasanAlat(data) {
 console.log('--- Ringkasan Setiap Alat ---');
 const daftarRingkasan = buatRingkasanAlat(inventarisDenganLokasi);
 daftarRingkasan.forEach(ringkasan => console.log(ringkasan));
+
+// --- Mengolahan Data & Import dari utils.js ---
+
+// Import fungsi-fungsi baru dari utils.js
+import { 
+  hitungTotalUnit, 
+  filterInventaris, 
+  cariBarangById, 
+  buatStatistikLengkap 
+} from './utils.js';
+
+// Eksekusi pengolahan data dengan Error Handling (try-catch)
+try {
+  console.log('=== HASIL INVENTARIS ===');
+
+  // Menampilkan statistik lengkap
+  const statistikLengkap = buatStatistikLengkap(inventarisDenganLokasi);
+  console.log('--- Statistik Lengkap Inventaris ---');
+  console.log(statistikLengkap);
+
+  // Menyaring alat berdasarkan lokasi spesifik
+  const alatDiBengkel = filterInventaris(inventarisDenganLokasi, { lokasi: 'Bengkel Produksi' });
+  console.log('--- Filter Lokasi (Bengkel Produksi) ---');
+  console.table(alatDiBengkel);
+
+  // Uji pencarian ID yang ada (ID: 3)
+  const barangDitemukan = cariBarangById(inventarisDenganLokasi, 3);
+  console.log('--- Pencarian Barang ID 3 ---');
+  console.log(`Barang ditemukan: ${barangDitemukan.nama} (${barangDitemukan.lokasi})`);
+
+  // Uji Error Handling (Mencari ID yang tidak terdaftar untuk memicu catch)
+  console.log('--- Menguji Catch Block Error Handling ---');
+  cariBarangById(inventarisDenganLokasi, 999);
+
+} catch (error) {
+  console.error('Terjadi Kesalahan Aplikasi:', error.message);
+}
