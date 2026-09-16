@@ -34,7 +34,7 @@ footer {
   margin-top: auto;
 }
 
-/* Pembatas Tengah (Supaya gak terlalu ke samping) */
+/* Pembatas Tengah */
 .container {
   width: 90%;
   max-width: 1000px;
@@ -82,7 +82,8 @@ nav a:hover {
   padding: var(--space);
 }
 
-.card img {
+/* KHUSUS Gambar Produk (Agar tidak mengganggu foto profil) */
+.cards .card img {
   width: 100%;
   height: auto;
   border-radius: 4px;
@@ -99,11 +100,11 @@ textarea:focus-visible {
 
 /* Aturan Sembunyi / Tampil Tab */
 .tab-content {
-  display: none; /* Sembunyikan semua halaman bawaan */
+  display: none;
 }
 
 .tab-content.active {
-  display: block; /* Munculkan halaman yang dipilih */
+  display: block;
 }
 
 /* Penanda Menu Aktif */
@@ -114,35 +115,30 @@ nav a.active {
   border-radius: var(--radius);
 }
 
-/* Responsive Tablet & Desktop */
-@media (min-width: 768px) {
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
-}
-
 /* Fluid Typography untuk Judul Hero */
 .hero h2 {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-/* Styling Profile Section */
+/* KHUSUS Foto Profil (Terkunci Bulat Sempurna) */
+img.profile-img {
+  width: 180px !important;
+  height: 180px !important;
+  max-width: 180px !important;
+  max-height: 180px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  border: 3px solid var(--primary);
+  display: block;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
 .profile-card {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
-}
-
-.profile-img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid var(--primary);
 }
 
 .contact-list {
@@ -155,7 +151,15 @@ nav a.active {
   margin-bottom: 0.5rem;
 }
 
+/* Responsive Tablet & Desktop */
 @media (min-width: 768px) {
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
   .profile-card {
     flex-direction: row;
     align-items: flex-start;
