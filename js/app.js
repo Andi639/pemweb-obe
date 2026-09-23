@@ -1,7 +1,13 @@
-// Import fungsi dari utils.js di baris paling atas
-import { ringkasInventaris } from './utils.js';
+// --- 1. GABUNGAN IMPORT DARI utils.js ---
+import { 
+  ringkasInventaris,
+  hitungTotalUnit, 
+  filterInventaris, 
+  cariBarangById, 
+  buatStatistikLengkap 
+} from './utils.js';
 
-// Data Inventaris
+// --- DATA INVENTARIS AWAL ---
 const inventaris = [
   { id: 1, nama: 'Alat Pres Kemasan Amplang', kategori: 'Pengemasan', jumlah: 4, kondisi: 'Baik' },
   { id: 2, nama: 'Timbangan Digital Batik', kategori: 'Pewarnaan', jumlah: 6, kondisi: 'Baik' },
@@ -27,16 +33,15 @@ const totalUnit = inventaris.reduce((total, item) => total + item.jumlah, 0);
 console.log('--- Total Seluruh Unit Alat ---');
 console.log(`Total unit: ${totalUnit} unit`);
 
-// Panggil fungsi yang di-import dari utils.js dengan Error Handling
+// Panggil fungsi ringkasInventaris dengan Error Handling
 try {
   console.log('--- Object Statistik Inventaris (Import dari utils.js) ---');
   console.log(ringkasInventaris(inventaris));
 } catch (error) {
   console.error('Terjadi kesalahan:', error.message);
 }
-// Filter Alat Berdasarkan Lokasi ---
 
-// Menambahkan properti 'lokasi' pada array inventaris
+// --- DATA INVENTARIS DENGAN LOKASI ---
 const inventarisDenganLokasi = [
   { id: 1, nama: 'Alat Pres Kemasan Amplang', kategori: 'Pengemasan', jumlah: 4, kondisi: 'Baik', lokasi: 'Bengkel Produksi' },
   { id: 2, nama: 'Timbangan Digital Batik', kategori: 'Pewarnaan', jumlah: 6, kondisi: 'Baik', lokasi: 'Sentra Kerajinan' },
@@ -44,86 +49,201 @@ const inventarisDenganLokasi = [
   { id: 4, nama: 'Kuali Besar Pengolahan', kategori: 'Produksi', jumlah: 10, kondisi: 'Baik', lokasi: 'Gudang Utama' }
 ];
 
-// MenFilter alat berdasarkan lokasi tertentu (Contoh: "Bengkel Produksi")
+// Filter alat berdasarkan lokasi tertentu
 const lokasiTarget = 'Bengkel Produksi';
 const alatDiBengkel = inventarisDenganLokasi.filter(item => item.lokasi === lokasiTarget);
 
 console.log(`--- Daftar Alat di Lokasi: ${lokasiTarget} ---`);
 console.table(alatDiBengkel);
 
-// Mencari Alat Berdasarkan ID Menggunakan find ---
-
+// Fungsi pencarian alat berdasarkan ID
 function cariAlatDenganId(data, idCari) {
-  // Error handling jika data bukan array
   if (!Array.isArray(data)) {
     throw new TypeError('Data inventaris harus berupa array');
   }
-
-  // Cari item menggunakan method find
   const hasil = data.find(item => item.id === idCari);
-
-  // Return objek alat jika ketemu, atau pesan jika tidak ada
   return hasil ? hasil : `Alat dengan ID ${idCari} tidak ditemukan.`;
 }
 
-// Uji fungsi ke Console
 console.log('--- Hasil Pencarian ID: 2 ---');
 console.log(cariAlatDenganId(inventarisDenganLokasi, 2));
 
 console.log('--- Hasil Pencarian ID: 99 (Tidak Ada) ---');
 console.log(cariAlatDenganId(inventarisDenganLokasi, 99));
 
-// Ringkasan Alat dengan Destructuring & Template Literal ---
-
+// Fungsi buat ringkasan alat
 function buatRingkasanAlat(data) {
   if (!Array.isArray(data)) {
     throw new TypeError('Data inventaris harus berupa array');
   }
-
-  // Iterasi dan ekstrak properti dengan destructuring, lalu buat kita string dengan template literal
   return data.map(({ nama, kategori, jumlah, kondisi, lokasi }) => 
     `Alat [${nama}] kategori (${kategori}) berjumlah${jumlah} unit dengan kondisi ${kondisi} tersimpan di${lokasi}.`
   );
 }
 
-// Tampilkan hasil ringkasan ke Console
 console.log('--- Ringkasan Setiap Alat ---');
 const daftarRingkasan = buatRingkasanAlat(inventarisDenganLokasi);
 daftarRingkasan.forEach(ringkasan => console.log(ringkasan));
-
-// --- Mengolahan Data & Import dari utils.js ---
-
-// Import fungsi-fungsi baru dari utils.js
-import { 
-  hitungTotalUnit, 
-  filterInventaris, 
-  cariBarangById, 
-  buatStatistikLengkap 
-} from './utils.js';
 
 // Eksekusi pengolahan data dengan Error Handling (try-catch)
 try {
   console.log('=== HASIL INVENTARIS ===');
 
-  // Menampilkan statistik lengkap
   const statistikLengkap = buatStatistikLengkap(inventarisDenganLokasi);
   console.log('--- Statistik Lengkap Inventaris ---');
   console.log(statistikLengkap);
 
-  // Menyaring alat berdasarkan lokasi spesifik
-  const alatDiBengkel = filterInventaris(inventarisDenganLokasi, { lokasi: 'Bengkel Produksi' });
+  const filterDiBengkel = filterInventaris(inventarisDenganLokasi, { lokasi: 'Bengkel Produksi' });
   console.log('--- Filter Lokasi (Bengkel Produksi) ---');
-  console.table(alatDiBengkel);
+  console.table(filterDiBengkel);
 
-  // Uji pencarian ID yang ada (ID: 3)
   const barangDitemukan = cariBarangById(inventarisDenganLokasi, 3);
   console.log('--- Pencarian Barang ID 3 ---');
   console.log(`Barang ditemukan: ${barangDitemukan.nama} (${barangDitemukan.lokasi})`);
 
-  // Uji Error Handling (Mencari ID yang tidak terdaftar untuk memicu catch)
   console.log('--- Menguji Catch Block Error Handling ---');
   cariBarangById(inventarisDenganLokasi, 999);
 
 } catch (error) {
   console.error('Terjadi Kesalahan Aplikasi:', error.message);
+}
+
+// --- (Safe DOM Update, Pencarian & Event Delegation) ---
+
+// 1. Seleksi Elemen DOM
+const searchInput = document.querySelector('#search');
+const daftarContainer = document.querySelector('#daftar-alat');
+
+// 2. Membuat Elemen Panel Detail Dinamis (Di atas container daftar)
+const areaDetail = document.createElement('div');
+areaDetail.id = 'area-detail';
+areaDetail.style.display = 'none';
+areaDetail.style.padding = '1rem';
+areaDetail.style.backgroundColor = '#eef6ff';
+areaDetail.style.border = '1px solid #b6d4fe';
+areaDetail.style.borderRadius = '6px';
+areaDetail.style.marginBottom = '1rem';
+
+if (daftarContainer && daftarContainer.parentNode) {
+  daftarContainer.parentNode.insertBefore(areaDetail, daftarContainer);
+}
+
+// 3. Fungsi Tampilkan Detail
+function tampilkanDetail(item) {
+  areaDetail.replaceChildren();
+
+  const judul = document.createElement('h4');
+  judul.style.marginTop = '0';
+  judul.textContent = `Rincian Detail: ${item.nama}`;
+
+  const detailInfo = document.createElement('p');
+  detailInfo.textContent = `ID Alat: ${item.id} | Kategori: ${item.kategori} | Total Stok: ${item.jumlah} Unit | Status Kondisi: ${item.kondisi} | Lokasi Penyimpanan: ${item.lokasi}`;
+
+  const btnTutup = document.createElement('button');
+  btnTutup.type = 'button';
+  btnTutup.textContent = 'Tutup Detail';
+  btnTutup.style.marginTop = '0.5rem';
+  btnTutup.addEventListener('click', () => {
+    areaDetail.style.display = 'none';
+  });
+
+  areaDetail.append(judul, detailInfo, btnTutup);
+  areaDetail.style.display = 'block';
+}
+
+// 4. Fungsi Safe DOM Rendering untuk Daftar Card
+function renderItems(items) {
+  if (!daftarContainer) return;
+  
+  daftarContainer.replaceChildren();
+
+  if (items.length === 0) {
+    const pesanKosong = document.createElement('p');
+    pesanKosong.className = 'pesan-kosong';
+    pesanKosong.textContent = 'Alat tidak ditemukan. Coba kata kunci lain.';
+    daftarContainer.append(pesanKosong);
+    return;
+  }
+
+  items.forEach(item => {
+    const article = document.createElement('article');
+    article.className = 'card';
+    article.style.marginBottom = '1rem';
+
+    const title = document.createElement('h3');
+    title.textContent = item.nama;
+
+    const info = document.createElement('p');
+    info.textContent = `Kategori: ${item.kategori} | Jumlah: ${item.jumlah} unit | Kondisi: ${item.kondisi} | Lokasi: ${item.lokasi}`;
+
+    // Tombol Detail dengan Atribut dataset
+    const btnDetail = document.createElement('button');
+    btnDetail.type = 'button';
+    btnDetail.textContent = 'Detail';
+    btnDetail.dataset.detail = item.id;
+    btnDetail.style.marginTop = '0.5rem';
+
+    article.append(title, info, btnDetail);
+    daftarContainer.append(article);
+  });
+}
+
+// 5. Render Awal Data
+if (typeof inventarisDenganLokasi !== 'undefined') {
+  renderItems(inventarisDenganLokasi);
+}
+
+// 6. Event Listener Input Pencarian Real-Time (Latihan 1)
+if (searchInput) {
+  searchInput.addEventListener('input', (event) => {
+    const keyword = event.target.value.toLowerCase().trim();
+
+    const hasilFilter = inventarisDenganLokasi.filter(item =>
+      item.nama.toLowerCase().includes(keyword)
+    );
+
+    renderItems(hasilFilter);
+  });
+}
+
+// 7. Event Delegation untuk Tombol Detail
+if (daftarContainer) {
+  daftarContainer.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-detail]');
+    if (!button) return;
+
+    const idBarang = Number(button.dataset.detail);
+    const barangDipilih = inventarisDenganLokasi.find(item => item.id === idBarang);
+
+    if (barangDipilih) {
+      tampilkanDetail(barangDipilih);
+    }
+  });
+}
+
+// --- Menyimpan Preferensi Jumlah Item dengan localStorage ---
+
+// 1. Seleksi Elemen Dropdown Limit
+const limitSelect = document.querySelector('#limit');
+
+// 2. Ambil nilai preferensi yang tersimpan di localStorage (default '5' jika belum ada)
+const savedLimit = localStorage.getItem('limit') ?? '5';
+
+if (limitSelect) {
+  // Set nilai dropdown sesuai preferensi tersimpan
+  limitSelect.value = savedLimit;
+
+  // Render awal data sesuai batasan jumlah item yang tersimpan
+  renderItems(inventarisDenganLokasi.slice(0, Number(savedLimit)));
+
+  // 3. Event Listener ketika Pilihan Jumlah Item Diubah
+  limitSelect.addEventListener('change', (event) => {
+    const newLimit = event.target.value;
+    
+    // Simpan pilihan ke localStorage (data non-sensitif)
+    localStorage.setItem('limit', newLimit);
+    
+    // Render ulang kartu sesuai jumlah batas baru
+    renderItems(inventarisDenganLokasi.slice(0, Number(newLimit)));
+  });
 }

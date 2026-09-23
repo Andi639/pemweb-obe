@@ -68,3 +68,22 @@
 
 * **Tab Console**: Menampilkan seluruh statistik inventaris, tabel saringan lokasi, hasil pencarian ID, serta berhasil menangkap pesan error pada *catch block* saat menguji ID yang tidak terdaftar.
 * **Tab Network**: Mengonfirmasi bahwa file `app.js` dan `utils.js` dimuat dengan status HTTP **200 OK**, membuktikan bahwa jalur (*path*) antar-modul berjalan sempurna pada lingkungan HTTP lokal.
+
+---
+
+## Dokumentasi Modul 05 - DOM, Event, dan Web Storage (Tugas OBE)
+
+### 1. Penerapan Manipulasi DOM & Event Handling
+
+| Fitur / Interaksi | Event & Teknik DOM | Fungsi & Dampak UI |
+| :--- | :--- | :--- |
+| **Pencarian Real-Time** | `input` event + `filter()` | Menyaring daftar alat inventaris secara instan sesuai ketikan pengguna secara *case-insensitive*. |
+| **Safe DOM Update** | `replaceChildren()`, `createElement()`, `textContent` | Me-render ulang elemen kartu tanpa `innerHTML` untuk mencegah celah keamanan XSS. |
+| **Tombol Detail Dinamis** | Event Delegation (`closest('[data-detail]')`) | Memasang 1 listener pada container induk (`#daftar-alat`) untuk menampilkan rincian barang yang diklik. |
+| **Preferensi Jumlah Item** | `change` event + `localStorage` | Menyimpan batas jumlah tampilan item (2/5/10) sehingga preferensi bertahan saat *reload*. |
+
+### 2. Pengujian Alur Interaksi & State (DevTools)
+
+* **Real-Time Filtering**: Saat mengetik kata kunci pada `#search`, UI langsung memperbarui daftar kartu. Jika tidak ada hasil, pesan ramah ditampilkan.
+* **Event Delegation & Rincian**: Mengetuk tombol **Detail** pada kartu apa pun (termasuk hasil pencarian) akan menampilkan panel biru berisi detail lengkap barang dan tombol **Tutup Detail**.
+* **Web Storage Verification**: Pilihan jumlah item tersimpan di `localStorage` bawah kunci `'limit'`. Setelah halaman dimuat ulang (*reload*), status pilihan dan jumlah kartu otomatis dipulihkan.

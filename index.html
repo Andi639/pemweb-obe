@@ -33,6 +33,25 @@
         <p>Mendukung digitalisasi dan efisiensi produk usaha lokal di wilayah pesisir.</p>
         <p>Portal ini menyediakan informasi produk unggulan seperti Batik Lulantatibu, Beras Adan, dan Madu Sembakung.</p>
       </div>
+
+      <!-- Input Pencarian Real-Time -->
+      <div class="search-box" style="margin-top: 1.5rem; margin-bottom: 1rem;">
+        <label for="search" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Cari Alat Inventaris:</label>
+        <input type="search" id="search" placeholder="Ketik nama alat..." style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;" />
+      </div>
+
+      <!-- Dropdown Limit Tampilan Jumlah Item -->
+      <div class="limit-box" style="margin-top: 1rem; margin-bottom: 1rem;">
+        <label for="limit" style="font-weight: bold; margin-right: 0.5rem;">Tampilkan:</label>
+         <select id="limit" style="padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc;">
+            <option value="2">2 item</option>
+            <option value="5">5 item</option>
+            <option value="10">10 item</option>
+        </select>
+        </div>
+
+      <!-- Container Tempat Menampilkan Daftar Alat Hasil -->
+      <section id="daftar-alat" aria-live="polite"></section>
     </section>
 
     <!-- Section 2: Produk Unggulan -->
@@ -66,19 +85,19 @@
     </section>
 
     <!-- Section 4: Tentang Saya -->
-<section id="tentang" class="tab-content">
-  <h2>Tentang Saya</h2>
-  <div class="card profile-card">
-    <img src="images/Foto Diri.jpg" alt="Foto Andi Muhammad Arsa" class="profile-img">
-    <div class="profile-info">
-      <p>Halo, nama saya <strong>Andi Muhammad Arsa</strong>. Web ini dikembangkan oleh mahasiswa Teknik Komputer Universitas Borneo Tarakan untuk mendukung digitalisasi UMKM daerah pesisir.</p>
-      <ul class="contact-list">
-        <li><strong>Email:</strong> <a href="mailto:AndiMuhammadArsa@gmail.com">AndiMuhammadArsa@gmail.com</a></li>
-        <li><strong>No. HP/WhatsApp:</strong> <a href="https://wa.me/6282287115221" target="_blank">+62 822-8711-5221</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
+    <section id="tentang" class="tab-content">
+      <h2>Tentang Saya</h2>
+      <div class="card profile-card">
+        <img src="images/Foto Diri.jpg" alt="Foto Andi Muhammad Arsa" class="profile-img">
+        <div class="profile-info">
+          <p>Halo, nama saya <strong>Andi Muhammad Arsa</strong>. Web ini dikembangkan oleh mahasiswa Teknik Komputer Universitas Borneo Tarakan untuk mendukung digitalisasi UMKM daerah pesisir.</p>
+          <ul class="contact-list">
+            <li><strong>Email:</strong> <a href="mailto:AndiMuhammadArsa@gmail.com">AndiMuhammadArsa@gmail.com</a></li>
+            <li><strong>No. HP/WhatsApp:</strong> <a href="https://wa.me/6282287115221" target="_blank">+62 822-8711-5221</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -104,7 +123,7 @@
     }
   </script>
 
-  <!-- Script ES Module Modul 4 -->
+  <!-- Script ES Module Modul 4 & Modul 5 -->
   <script type="module" src="js/app.js"></script>
 
 </body>
