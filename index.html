@@ -43,15 +43,77 @@
       <!-- Dropdown Limit Tampilan Jumlah Item -->
       <div class="limit-box" style="margin-top: 1rem; margin-bottom: 1rem;">
         <label for="limit" style="font-weight: bold; margin-right: 0.5rem;">Tampilkan:</label>
-         <select id="limit" style="padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc;">
-            <option value="2">2 item</option>
-            <option value="5">5 item</option>
-            <option value="10">10 item</option>
+        <select id="limit" style="padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc;">
+          <option value="2">2 item</option>
+          <option value="5">5 item</option>
+          <option value="10">10 item</option>
         </select>
-        </div>
+      </div>
 
       <!-- Container Tempat Menampilkan Daftar Alat Hasil -->
       <section id="daftar-alat" aria-live="polite"></section>
+
+      <!-- Form Tambah Data Alat Inventaris (Modul 6) -->
+      <section class="form-section" style="margin-top: 2rem; padding: 1.5rem; background: #ffffff; border: 1px solid #ddd; border-radius: 8px;">
+        <h2>Tambah Data Alat Inventaris</h2>
+        
+        <!-- Area Status Pesan Form (Aksesibel) -->
+        <div id="form-status" role="status" aria-live="polite" style="margin-bottom: 1rem; font-weight: bold; color: #333;"></div>
+
+        <form id="form-alat" novalidate>
+          <!-- Field 1: Nama Alat -->
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="nama" style="display: block; font-weight: bold; margin-bottom: 0.3rem;">Nama Alat:</label>
+            <input type="text" id="nama" name="nama" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" aria-describedby="error-nama" />
+            <small id="error-nama" class="error" style="color: red; display: block; margin-top: 0.2rem;"></small>
+          </div>
+
+          <!-- Field 2: Kategori -->
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="kategori" style="display: block; font-weight: bold; margin-bottom: 0.3rem;">Kategori:</label>
+            <select id="kategori" name="kategori" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" aria-describedby="error-kategori">
+              <option value="">-- Pilih Kategori --</option>
+              <option value="Pengemasan">Pengemasan</option>
+              <option value="Pewarnaan">Pewarnaan</option>
+              <option value="Kerajinan">Kerajinan</option>
+              <option value="Produksi">Produksi</option>
+            </select>
+            <small id="error-kategori" class="error" style="color: red; display: block; margin-top: 0.2rem;"></small>
+          </div>
+
+          <!-- Field 3: Jumlah -->
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="jumlah" style="display: block; font-weight: bold; margin-bottom: 0.3rem;">Jumlah (Unit):</label>
+            <input type="number" id="jumlah" name="jumlah" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" aria-describedby="error-jumlah" />
+            <small id="error-jumlah" class="error" style="color: red; display: block; margin-top: 0.2rem;"></small>
+          </div>
+
+          <!-- Field 4: Kondisi -->
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="kondisi" style="display: block; font-weight: bold; margin-bottom: 0.3rem;">Kondisi:</label>
+            <select id="kondisi" name="kondisi" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" aria-describedby="error-kondisi">
+              <option value="">-- Pilih Kondisi --</option>
+              <option value="Baik">Baik</option>
+              <option value="Perlu Cek">Perlu Cek</option>
+              <option value="Rusak">Rusak</option>
+            </select>
+            <small id="error-kondisi" class="error" style="color: red; display: block; margin-top: 0.2rem;"></small>
+          </div>
+
+          <!-- Field 5: Tanggal Perolehan -->
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="tanggal_perolehan" style="display: block; font-weight: bold; margin-bottom: 0.3rem;">Tanggal Perolehan:</label>
+            <input type="date" id="tanggal_perolehan" name="tanggal_perolehan" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" aria-describedby="error-tanggal_perolehan" />
+            <small id="error-tanggal_perolehan" class="error" style="color: red; display: block; margin-top: 0.2rem;"></small>
+          </div>
+
+          <!-- Tombol Submit -->
+          <button type="submit" style="padding: 0.6rem 1.2rem; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Simpan Data Alat</button>
+        </form>
+
+        <!-- Area Preview Data (Langkah 6) -->
+        <div id="preview-data" style="margin-top: 1.5rem; padding: 1rem; background-color: #e9ecef; border-radius: 4px; display: none;"></div>
+      </section>
     </section>
 
     <!-- Section 2: Produk Unggulan -->
@@ -123,7 +185,7 @@
     }
   </script>
 
-  <!-- Script ES Module Modul 4 & Modul 5 -->
+  <!-- Script ES Module Modul 4, 5, & 6 -->
   <script type="module" src="js/app.js"></script>
 
 </body>
