@@ -193,7 +193,7 @@ if (typeof inventarisDenganLokasi !== 'undefined') {
   renderItems(inventarisDenganLokasi);
 }
 
-// 6. Event Listener Input Pencarian Real-Time (Latihan 1)
+// 6. Event Listener Input Pencarian Real-Time
 if (searchInput) {
   searchInput.addEventListener('input', (event) => {
     const keyword = event.target.value.toLowerCase().trim();
