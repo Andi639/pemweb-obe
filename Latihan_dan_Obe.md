@@ -87,3 +87,23 @@
 * **Real-Time Filtering**: Saat mengetik kata kunci pada `#search`, UI langsung memperbarui daftar kartu. Jika tidak ada hasil, pesan ramah ditampilkan.
 * **Event Delegation & Rincian**: Mengetuk tombol **Detail** pada kartu apa pun (termasuk hasil pencarian) akan menampilkan panel biru berisi detail lengkap barang dan tombol **Tutup Detail**.
 * **Web Storage Verification**: Pilihan jumlah item tersimpan di `localStorage` bawah kunci `'limit'`. Setelah halaman dimuat ulang (*reload*), status pilihan dan jumlah kartu otomatis dipulihkan.
+
+---
+
+## Dokumentasi Modul 06 – Form Aksesibel dan Validasi (Tugas OBE)
+
+### 1. Penerapan HTML Validation, JavaScript Business Validation & Aksesibilitas
+
+| Fitur / Validasi | Event & Teknik Implementation | Fungsi & Dampak UI / Aksesibilitas |
+| :--- | :--- | :--- |
+| **Validasi Tanggal Perolehan** | Logical comparison (`inputDate > today`) | Memblokir pengisian tanggal di masa depan dan memicu pesan kesalahan spesifik. |
+| **Whitelist Kategori** | Array Whitelist (`kategoriValid.includes()`) | Mencegah manipulasi opsi dropdown melalui *Inspect Element* (DevTools). |
+| **Pesan Error Spesifik** | Branching Logic (`if-else` terpisah) | Membedakan umpan balik visual secara jelas antara field kosong dengan format tidak valid. |
+| **Indikator Aksesibilitas** | Atribut `aria-invalid` & `aria-describedby` | Menghubungkan input *error* dengan pesan kesalahan agar terbaca oleh *screen reader*. |
+| **Autofocus Error** | Event Listener `submit` + `.focus()` | Secara otomatis memindahkan fokus kursor ke elemen input tidak valid pertama saat disubmit. |
+
+### 2. Pengujian Alur Interaksi, DevTools & Aksesibilitas
+
+* **Validation & Whitelist Testing:** Pengujian manipulasi nilai opsi `<option value="Hack">` pada DevTools berhasil ditangkal oleh sistem dengan menampilkan pesan *"Format tidak valid: Pilih kategori dari opsi yang tersedia."*
+* **Error Messaging & Border State:** Ketika input kosong disubmit, field ditandai dengan *border* merah 2px, atribut `aria-invalid="true"`, dan pesan kesalahan *"wajib diisi"* ditayangkan di bawah input.
+* **Accessible Focus Management:** Saat pengiriman formulir gagal akibat data tidak valid, fokus keyboard (*autofocus*) langsung berpindah ke bidang input bermasalah paling atas untuk memudahkan navigasi pengguna.
