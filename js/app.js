@@ -367,7 +367,7 @@ if (formAlat) {
 }
 
 // ==========================================
-// MODUL 07: FETCH API, RETRY & FILTER
+// TUGAS OBE: MINI DASHBOARD INTEGRASI REST API
 // ==========================================
 
 const USE_LOCAL_DATA = false;
@@ -378,37 +378,68 @@ const endpoint = USE_LOCAL_DATA
 const output = document.querySelector('#api-output');
 const message = document.querySelector('#api-message');
 const btnRetry = document.querySelector('#btn-retry');
-
-// Nama variabel diubah agar tidak bentrok dengan searchInput milik Inventaris
 const searchUserInput = document.querySelector('#search-user');
 
-let allUsers = []; // Menampung data pengguna dari API
+let allUsers = [];
 
-// Fungsi merender daftar pengguna API ke DOM
+// Fungsi Render dengan Handling Status Pesan Dinamis
 function renderUsers(usersList) {
   if (!output) return;
   output.replaceChildren();
 
+  // EMPTY STATE: Jika data kosong / pencarian tidak ditemukan
   if (usersList.length === 0) {
-    const li = document.createElement('li');
-    li.textContent = 'Pengguna tidak ditemukan.';
-    output.append(li);
+    // Sembunyikan atau ubah pesan status hijau
+    if (message) {
+      message.textContent = 'Data tidak ditemukan.';
+      message.style.color = '#856404'; // Warna netral/peringatan
+    }
+
+    const emptyCard = document.createElement('li');
+    emptyCard.style.padding = '12px';
+    emptyCard.style.backgroundColor = '#fff3cd';
+    emptyCard.style.color = '#856404';
+    emptyCard.style.borderRadius = '6px';
+    emptyCard.style.listStyle = 'none'; // Hilangkan titik bullet
+    emptyCard.textContent = '⚠️ Data pengguna tidak ditemukan.';
+    output.append(emptyCard);
     return;
   }
 
+  // SUCCESS STATE: Kembalikan pesan status hijau dengan jumlah data yang sesuai
+  if (message) {
+    message.textContent = `✅ Berhasil memuat ${usersList.length} data dari REST API.`;
+    message.style.color = 'green';
+  }
+
+  // Render daftar pengguna
   usersList.forEach((user) => {
     const li = document.createElement('li');
-    li.textContent = `${user.name} (${user.email})`;
+    li.style.padding = '10px 15px';
+    li.style.borderBottom = '1px solid #eee';
+    li.style.display = 'flex';
+    li.style.justifyContent = 'space-between';
+    li.style.alignItems = 'center';
+
+    li.innerHTML = `
+      <div>
+        <strong>👤 ${user.name}</strong> <br>
+        <small style="color: #666;">✉️ ${user.email}</small>
+      </div>
+      <span style="font-size: 0.8rem; background: #e2e3e5; padding: 2px 6px; border-radius: 4px;">ID: ${user.id}</span>
+    `;
     output.append(li);
   });
 }
 
-// Fungsi utama memuat data dari API
+// Fungsi utama Fetch dengan Handling Loading & Error State
 async function loadUsers() {
   if (!output || !message) return;
 
+  // LOADING STATE
   if (btnRetry) btnRetry.style.display = 'none';
-  message.textContent = 'Memuat data...';
+  message.textContent = '⏳ Memuat data dari server API...';
+  message.style.color = '#007bff';
 
   try {
     const response = await fetch(endpoint);
@@ -418,38 +449,40 @@ async function loadUsers() {
     }
 
     allUsers = await response.json();
-    renderUsers(allUsers.slice(0, 5)); // Tampilkan 5 data pertama
+    renderUsers(allUsers); // Success state
 
-    message.textContent = `Berhasil memuat ${allUsers.length} data.`;
+    message.textContent = `✅ Berhasil memuat ${allUsers.length} data dari REST API.`;
+    message.style.color = 'green';
   } catch (error) {
+    // ERROR STATE
     console.error('Terjadi kesalahan Fetch:', error);
-    message.textContent = 'Data belum dapat dimuat. Coba kembali.';
+    message.textContent = '❌ Gagal terhubung ke API. Silakan periksa koneksi internet Anda.';
+    message.style.color = 'red';
     if (btnRetry) btnRetry.style.display = 'inline-block';
   }
 }
 
-// Event Listener untuk pencarian pengguna (Latihan No 2)
+// Event Listeners
 if (searchUserInput) {
   searchUserInput.addEventListener('input', (e) => {
-    const keyword = e.target.value.toLowerCase();
-    
+    const keyword = e.target.value.toLowerCase().trim();
     const filteredUsers = allUsers.filter((user) =>
       user.name.toLowerCase().includes(keyword)
     );
-
     renderUsers(filteredUsers);
   });
 }
 
-// Event Listener untuk tombol retry (Latihan No 1)
 if (btnRetry) {
   btnRetry.addEventListener('click', loadUsers);
 }
 
-// Jalankan fungsi
+// Jalankan fungsi saat modul dimuat
 loadUsers();
 
+// ==========================================
 // LATIHAN NO 3: POST REQUEST EXAMPLE
+// ==========================================
 
 async function createUser(userData) {
   try {

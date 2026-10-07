@@ -107,3 +107,23 @@
 * **Validation & Whitelist Testing:** Pengujian manipulasi nilai opsi `<option value="Hack">` pada DevTools berhasil ditangkal oleh sistem dengan menampilkan pesan *"Format tidak valid: Pilih kategori dari opsi yang tersedia."*
 * **Error Messaging & Border State:** Ketika input kosong disubmit, field ditandai dengan *border* merah 2px, atribut `aria-invalid="true"`, dan pesan kesalahan *"wajib diisi"* ditayangkan di bawah input.
 * **Accessible Focus Management:** Saat pengiriman formulir gagal akibat data tidak valid, fokus keyboard (*autofocus*) langsung berpindah ke bidang input bermasalah paling atas untuk memudahkan navigasi pengguna.
+
+---
+
+## Dokumentasi Modul 07 – Integrasi REST API dan Handling State (Tugas OBE)
+
+### 1. Penerapan REST API, Dynamic Filtering & Penanganan UI State
+
+| Fitur / Fitur API | Event & Teknik Implementation | Fungsi & Dampak UI / Aksesibilitas |
+| :--- | :--- | :--- |
+| **Fetch API & Asynchronous** | `async/await` + `fetch(endpoint)` | Mengambil data pengguna dari server REST API JSONPlaceholder secara efisien tanpa *page reload*. |
+| **Real-Time Client Filtering** | `input` event + `filter()` & `includes()` | Menyaring daftar pengguna berdasarkan nama secara *case-insensitive* langsung di browser. |
+| **Pesan Status & Empty State** | Dynamic DOM update (`usersList.length === 0`) | Memperbarui teks status secara fleksibel dan menampilkan pesan *empty state* saat data tidak cocok. |
+| **Error Handling & Retry** | `try...catch` + `btnRetry.addEventListener('click')` | Menangkap kegagalan jaringan, menampilkan pesan error, dan memicu pemicuan ulang (*refetching*) data. |
+| **Simulasi POST Request** | `fetch(endpoint, { method: 'POST' })` | Mensimulasikan pengiriman data pengguna baru ke REST API dengan payload berformat JSON. |
+
+### 2. Pengujian Alur Interaksi, DevTools & UI State
+
+* **API Integration & Loading State:** Saat halaman pertama kali dimuat, sistem menampilkan indikator *"Memuat data..."* dan secara otomatis me-render 10 data pengguna dari REST API JSONPlaceholder dengan status HTTP **200 OK**.
+* **Dynamic Search & Empty State Handling:** Ketika mengetik kata kunci pencarian yang tidak ditemukan (misal *"andi data led"*), teks status hijau otomatis berganti menjadi pesan peringatan *"Data tidak ditemukan."* dan daftar *bullet point* dihilangkan agar antarmuka tetap konsisten.
+* **Error State & Retry Mechanism:** Pengujian simulasi jaringan terputus memicu *catch block* untuk menampilkan pesan error berwarna merah serta memunculkan tombol **Coba Lagi** secara dinamis untuk memuat ulang data tanpa me-refresh seluruh halaman.

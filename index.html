@@ -161,25 +161,22 @@
       </div>
     </section>
 
-    <!-- Section Modul 7: Web API -->
-    <section id="modul-7" style="margin-top: 30px; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+    <!-- Section Modul 7 / Tugas OBE: Clean UI -->
+    <section id="modul-7" class="card" style="margin-top: 2rem;">
       <h2>Daftar Pengguna (API)</h2>
       
-      <!-- Input Pencarian (Latihan No 2) -->
-      <div style="margin-bottom: 10px;">
-        <input type="text" id="search-user" placeholder="Cari nama pengguna..." style="padding: 6px; width: 250px;">
+      <div class="search-box" style="margin-bottom: 1rem;">
+        <input type="text" id="search-user" placeholder="Cari nama pengguna..." style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
       </div>
 
-      <!-- Status Pesan (Loading / Success / Error) -->
-      <p id="api-message" style="font-weight: bold; color: #333;">Memuat data...</p>
-      
-      <!-- Tombol Retry (Latihan No 1) -->
-      <button id="btn-retry" style="display: none; margin-bottom: 10px; padding: 6px 12px; cursor: pointer;">
-        🔄 Coba Lagi
-      </button>
+      <div id="api-status-container" style="margin-bottom: 0.8rem;">
+        <p id="api-message" style="font-weight: bold; color: #333; margin: 0;">Memuat data...</p>
+        <button id="btn-retry" type="button" style="display: none; margin-top: 0.5rem; padding: 0.4rem 0.8rem; cursor: pointer;">
+          Coba Lagi
+        </button>
+      </div>
 
-      <!-- Tempat Hasil Data API -->
-      <ul id="api-output"></ul>
+      <ul id="api-output" style="padding-left: 1.2rem; margin-top: 0.5rem;"></ul>
     </section>
 
   </main>
