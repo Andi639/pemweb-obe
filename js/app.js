@@ -110,7 +110,7 @@ try {
 
 // --- (Safe DOM Update, Pencarian & Event Delegation) ---
 
-// 1. Seleksi Elemen DOM
+// 1. Seleksi Elemen DOM Inventaris
 const searchInput = document.querySelector('#search');
 const daftarContainer = document.querySelector('#daftar-alat');
 
@@ -176,7 +176,6 @@ function renderItems(items) {
     const info = document.createElement('p');
     info.textContent = `Kategori: ${item.kategori} | Jumlah: ${item.jumlah} unit | Kondisi: ${item.kondisi} | Lokasi: ${item.lokasi}`;
 
-    // Tombol Detail dengan Atribut dataset
     const btnDetail = document.createElement('button');
     btnDetail.type = 'button';
     btnDetail.textContent = 'Detail';
@@ -188,12 +187,12 @@ function renderItems(items) {
   });
 }
 
-// 5. Render Awal Data
+// 5. Render Awal Data Inventaris
 if (typeof inventarisDenganLokasi !== 'undefined') {
   renderItems(inventarisDenganLokasi);
 }
 
-// 6. Event Listener Input Pencarian Real-Time
+// 6. Event Listener Input Pencarian Real-Time Inventaris
 if (searchInput) {
   searchInput.addEventListener('input', (event) => {
     const keyword = event.target.value.toLowerCase().trim();
@@ -258,7 +257,7 @@ function validateForm(formData) {
     errors.nama = 'Format tidak valid: Nama alat minimal 3 karakter.';
   }
 
-  // 2. Validasi Kategori (Whitelist)
+  // 2. Validasi Kategori
   if (!kategori) {
     errors.kategori = 'Pilih kategori alat.';
   } else if (!kategoriValid.includes(kategori)) {
@@ -277,7 +276,7 @@ function validateForm(formData) {
     errors.kondisi = 'Pilih kondisi alat.';
   }
 
-  // 5. Validasi Tanggal Perolehan (Tidak Boleh Masa Depan)
+  // 5. Validasi Tanggal Perolehan
   if (!tanggal) {
     errors.tanggal_perolehan = 'Tanggal perolehan wajib diisi.';
   } else {
@@ -306,7 +305,7 @@ if (formAlat) {
     const formData = new FormData(formAlat);
     const errors = validateForm(formData);
 
-    // Reset error dan tampilan
+    // Reset error
     document.querySelectorAll('.error').forEach((el) => {
       el.textContent = '';
     });
@@ -318,7 +317,7 @@ if (formAlat) {
 
     if (previewData) previewData.style.display = 'none';
 
-    // Jika ada Error (Aksesibel)
+    // Jika ada Error
     if (Object.keys(errors).length > 0) {
       for (const [field, message] of Object.entries(errors)) {
         const errorEl = document.querySelector(`#error-${field}`);
@@ -366,3 +365,118 @@ if (formAlat) {
     }
   });
 }
+
+// ==========================================
+// MODUL 07: FETCH API, RETRY & FILTER
+// ==========================================
+
+const USE_LOCAL_DATA = false;
+const endpoint = USE_LOCAL_DATA
+  ? './data/users.json'
+  : 'https://jsonplaceholder.typicode.com/users';
+
+const output = document.querySelector('#api-output');
+const message = document.querySelector('#api-message');
+const btnRetry = document.querySelector('#btn-retry');
+
+// Nama variabel diubah agar tidak bentrok dengan searchInput milik Inventaris
+const searchUserInput = document.querySelector('#search-user');
+
+let allUsers = []; // Menampung data pengguna dari API
+
+// Fungsi merender daftar pengguna API ke DOM
+function renderUsers(usersList) {
+  if (!output) return;
+  output.replaceChildren();
+
+  if (usersList.length === 0) {
+    const li = document.createElement('li');
+    li.textContent = 'Pengguna tidak ditemukan.';
+    output.append(li);
+    return;
+  }
+
+  usersList.forEach((user) => {
+    const li = document.createElement('li');
+    li.textContent = `${user.name} (${user.email})`;
+    output.append(li);
+  });
+}
+
+// Fungsi utama memuat data dari API
+async function loadUsers() {
+  if (!output || !message) return;
+
+  if (btnRetry) btnRetry.style.display = 'none';
+  message.textContent = 'Memuat data...';
+
+  try {
+    const response = await fetch(endpoint);
+
+    if (!response.ok) {
+      throw new Error(`HTTP Error status: ${response.status}`);
+    }
+
+    allUsers = await response.json();
+    renderUsers(allUsers.slice(0, 5)); // Tampilkan 5 data pertama
+
+    message.textContent = `Berhasil memuat ${allUsers.length} data.`;
+  } catch (error) {
+    console.error('Terjadi kesalahan Fetch:', error);
+    message.textContent = 'Data belum dapat dimuat. Coba kembali.';
+    if (btnRetry) btnRetry.style.display = 'inline-block';
+  }
+}
+
+// Event Listener untuk pencarian pengguna (Latihan No 2)
+if (searchUserInput) {
+  searchUserInput.addEventListener('input', (e) => {
+    const keyword = e.target.value.toLowerCase();
+    
+    const filteredUsers = allUsers.filter((user) =>
+      user.name.toLowerCase().includes(keyword)
+    );
+
+    renderUsers(filteredUsers);
+  });
+}
+
+// Event Listener untuk tombol retry (Latihan No 1)
+if (btnRetry) {
+  btnRetry.addEventListener('click', loadUsers);
+}
+
+// Jalankan fungsi
+loadUsers();
+
+// LATIHAN NO 3: POST REQUEST EXAMPLE
+
+async function createUser(userData) {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('--- Hasil POST Request (User Baru Berhasil Dibuat) ---');
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('Gagal mengirim data POST:', error.message);
+  }
+}
+
+// Uji coba mengirim data dummy user baru
+createUser({
+  name: 'Andi Muhammad Arsa',
+  username: 'arsa',
+  email: 'AndiMuhammadArsa@gmail.com'
+});

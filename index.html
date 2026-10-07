@@ -40,7 +40,7 @@
         <input type="search" id="search" placeholder="Ketik nama alat..." style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;" />
       </div>
 
-      <!-- Dropdown Limit Tampilan Jumlah Item -->
+      <!-- Dropdown Limit Tampilkan Jumlah Item -->
       <div class="limit-box" style="margin-top: 1rem; margin-bottom: 1rem;">
         <label for="limit" style="font-weight: bold; margin-right: 0.5rem;">Tampilkan:</label>
         <select id="limit" style="padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc;">
@@ -111,7 +111,7 @@
           <button type="submit" style="padding: 0.6rem 1.2rem; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Simpan Data Alat</button>
         </form>
 
-        <!-- Area Preview Data (Langkah 6) -->
+        <!-- Area Preview Data -->
         <div id="preview-data" style="margin-top: 1.5rem; padding: 1rem; background-color: #e9ecef; border-radius: 4px; display: none;"></div>
       </section>
     </section>
@@ -160,6 +160,28 @@
         </div>
       </div>
     </section>
+
+    <!-- Section Modul 7: Web API -->
+    <section id="modul-7" style="margin-top: 30px; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+      <h2>Daftar Pengguna (API)</h2>
+      
+      <!-- Input Pencarian (Latihan No 2) -->
+      <div style="margin-bottom: 10px;">
+        <input type="text" id="search-user" placeholder="Cari nama pengguna..." style="padding: 6px; width: 250px;">
+      </div>
+
+      <!-- Status Pesan (Loading / Success / Error) -->
+      <p id="api-message" style="font-weight: bold; color: #333;">Memuat data...</p>
+      
+      <!-- Tombol Retry (Latihan No 1) -->
+      <button id="btn-retry" style="display: none; margin-bottom: 10px; padding: 6px 12px; cursor: pointer;">
+        🔄 Coba Lagi
+      </button>
+
+      <!-- Tempat Hasil Data API -->
+      <ul id="api-output"></ul>
+    </section>
+
   </main>
 
   <footer>
@@ -171,21 +193,18 @@
   <!-- Script Sederhana untuk Perpindahan Tab/Menu -->
   <script>
     function showSection(sectionId) {
-      // 1. Sembunyikan semua section
       const sections = document.querySelectorAll('.tab-content');
       sections.forEach(sec => sec.classList.remove('active'));
 
-      // 2. Tampilkan section yang diklik
       document.getElementById(sectionId).classList.add('active');
 
-      // 3. Ubah warna tombol navigasi aktif
       const navLinks = document.querySelectorAll('nav a');
       navLinks.forEach(link => link.classList.remove('active'));
       document.getElementById('nav-' + sectionId).classList.add('active');
     }
   </script>
 
-  <!-- Script ES Module Modul 4, 5, & 6 -->
+  <!-- Script ES Module Modul 4, 5, 6 & 7 -->
   <script type="module" src="js/app.js"></script>
 
 </body>
